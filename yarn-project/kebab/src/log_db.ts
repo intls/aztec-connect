@@ -54,9 +54,9 @@ export class EthLogsDb implements EventStore {
   }
 
   private async _addEthLogs(logs: EthEvent[]) {
-    let commited = false;
+    let committed = false;
     let batchSize = 200;
-    while (!commited) {
+    while (!committed) {
       const logsCopy = [...logs];
       const connection = getConnection(this.connection.name);
       const queryRunner = connection.createQueryRunner();
@@ -73,7 +73,7 @@ export class EthLogsDb implements EventStore {
         }
         await queryRunner.commitTransaction();
         await queryRunner.release();
-        commited = true;
+        committed = true;
       } catch (err) {
         await queryRunner.rollbackTransaction();
         await queryRunner.release();
