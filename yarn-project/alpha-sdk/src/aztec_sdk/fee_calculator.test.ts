@@ -405,7 +405,7 @@ describe('fee calculator', () => {
       ]);
     });
 
-    it('return fees for transfering non fee paying asset', async () => {
+    it('return fees for transferring non fee paying asset', async () => {
       expect(await feeCalculator.getTransferFees(noneFeePayingAssetId)).toEqual([
         { assetId, value: 105n + 105n },
         { assetId, value: 207n + 105n },
@@ -416,7 +416,7 @@ describe('fee calculator', () => {
       ]);
     });
 
-    it('return fees for transfering with chained txs', async () => {
+    it('return fees for transferring with chained txs', async () => {
       core.getSpendableSum.mockResolvedValue(1000n);
 
       const mockPickNotes = (numNotes: number) => {
@@ -451,7 +451,7 @@ describe('fee calculator', () => {
       }
     });
 
-    it('return fees for transfering non fee paying asset with chained txs', async () => {
+    it('return fees for transferring non fee paying asset with chained txs', async () => {
       core.getSpendableSum.mockResolvedValue(1100n);
 
       const mockPickNotes = (numNotes: number) => {
@@ -503,7 +503,7 @@ describe('fee calculator', () => {
       }
     });
 
-    it('return fees for transfering without enough spendable sum', async () => {
+    it('return fees for transferring without enough spendable sum', async () => {
       const options = { accountPublicKey, assetValue: { assetId, value: 10n } };
 
       const mockSpendable = (value: bigint, numNotes: number) => {
@@ -554,7 +554,7 @@ describe('fee calculator', () => {
       }
     });
 
-    it('return fees for transfering without enough spendable sum', async () => {
+    it('return fees for transferring without enough spendable sum', async () => {
       const options = { accountPublicKey, assetValue: { assetId: noneFeePayingAssetId, value: 10n } };
 
       const mockSpendable = (value: bigint, numNotes: number, numNonFeePayingNotes = 2) => {
