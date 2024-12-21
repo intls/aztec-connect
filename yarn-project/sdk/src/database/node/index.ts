@@ -299,8 +299,8 @@ export class SQLDatabase implements Database {
     initialBatchSize,
   ) {
     let batchSize = initialBatchSize;
-    let commited = false;
-    while (!commited) {
+    let committed = false;
+    while (!committed) {
       const itemsCopy = [...items];
       const queryRunner = this.connection.createQueryRunner();
 
@@ -316,7 +316,7 @@ export class SQLDatabase implements Database {
         }
         await queryRunner.commitTransaction();
         await queryRunner.release();
-        commited = true;
+        committed = true;
       } catch (err) {
         await queryRunner.rollbackTransaction();
         await queryRunner.release();
